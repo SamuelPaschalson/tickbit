@@ -1,12 +1,12 @@
 const { body, validationResult } = require("express-validator");
 
 const signupValidation = [
-  body("phoneNumber").notEmpty().withMessage("Phone number is required"),
+  body("email").notEmpty().withMessage("Email is required"),
   body("password").notEmpty().withMessage("Password is required"),
 ];
 
 const loginValidation = [
-  body("phoneNumber").notEmpty().withMessage("Phone number is required"),
+  body("email").notEmpty().withMessage("Email is required"),
   body("password").notEmpty().withMessage("Password is required"),
 ];
 
