@@ -43,7 +43,7 @@ exports.create_event = async (req, res) => {
         end_time,
         location,
         event_description,
-        image: `uploads/${imagePath}`,
+        image: `/uploads/${imagePath}`,
         running_event,
         ticket_name,
         ticket_price,
