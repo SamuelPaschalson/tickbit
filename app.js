@@ -11,8 +11,12 @@ const eventRoutes = require("./routes/eventRoutes");
 
 // port, express and cors setup
 const app = express();
-app.use(express.json({ extended: true }));
+// app.use(express.json({ extended: true }));
 app.use(cors());
+app.use(express.static('uploads'));
+app.use(express.json({ limit: '50mb', extended: true }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
 
 // setup port and listening for the port
 const PORT = process.env.PORT || 5000;
