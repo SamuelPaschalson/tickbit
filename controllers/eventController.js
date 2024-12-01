@@ -5,10 +5,6 @@ const upload = require("../upload");
 const moment = require("moment");
 
 exports.create_event = async (req, res) => {
-  upload.single("image")(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ success: false, message: err.message });
-    }
 
     const {
       event_title,
@@ -31,7 +27,7 @@ exports.create_event = async (req, res) => {
         .json({ success: false, message: "Image is required" });
     }
 
-    const imagePath = `/uploads/${req.file.filename}`; // Path to the uploaded image
+    const imagePath = req.file ? req.file.filename : null; // Path to the uploaded image
 
     try {
       const newEvent = new Event({
@@ -43,7 +39,7 @@ exports.create_event = async (req, res) => {
         end_time,
         location,
         event_description,
-        image: imagePath,
+        image: `/uploads/${imagePath}`,
         running_event,
         ticket_name,
         ticket_price,
@@ -61,7 +57,7 @@ exports.create_event = async (req, res) => {
       console.error("Error occurred while creating a new event", error.message);
       res.status(500).json({ success: false, error: error.message });
     }
-  });
+
 };
 
 exports.popular_event = async (req, res) => {
