@@ -1,41 +1,41 @@
 // Necessary packages
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("express").json;
 const cors = require("cors");
-const connectDB = require("./config");
+const bodyParser = require("express").json;
 const path = require("path");
+const connectDB = require("./config");
+
+const app = express();
 connectDB();
 
-
-// port, express and cors setup
-const app = express();
-// app.use(express.json({ extended: true }));
+// Middleware setup
 app.use(cors());
 app.use(bodyParser());
-// app.use(express.json({ limit: '50mb', extended: true }));
-// app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// routes
+// Serve static files in "uploads" directory
+app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
+
+// Routes
 const authRoutes = require("./routes/authRoutes");
 const eventRoutes = require("./routes/eventRoutes");
 
-// setup port and listening for the port
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Backend server running on port ${PORT}`);
-});
-
-// endpoints
-app.get("/api/", (_, __) =>
-  __.status(200).json({ message: "This is a Ticket API service" })
+// API Endpoints
+app.get("/api/", (req, res) =>
+  res.status(200).json({ message: "This is a Ticket API service" })
 );
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
-app.use((_, __) => {
-  __.status(400).json({ message: "Prohibited" });
+
+// Catch-all for undefined routes
+app.use((req, res) => {
+  res.status(400).json({ message: "Prohibited" });
+});
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Backend server running on port ${PORT}`);
 });
 
 module.exports = app;
