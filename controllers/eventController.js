@@ -220,9 +220,9 @@ exports.events = async (req, res) => {
 
 exports.eventsById = async (req, res) => {
   try {
-    const { id } = req.params; // Get the event ID from the route parameters
+    const { eventId } = req.params; // Get the event ID from the route parameters
     // Find the event by ID
-    const event = await Event.findById(id);
+    const event = await Event.findById(eventId);
     if (!event) {
       return res.status(404).json({
         success: false,
