@@ -31,7 +31,7 @@ exports.create_event = async (req, res) => {
         .json({ success: false, message: "Image is required" });
     }
 
-    const imagePath = req.file.filename; // Path to the uploaded image
+    const imagePath = `/uploads/${req.file.filename}`; // Path to the uploaded image
 
     try {
       const newEvent = new Event({
@@ -43,7 +43,7 @@ exports.create_event = async (req, res) => {
         end_time,
         location,
         event_description,
-        image: `/uploads/${imagePath}`,
+        image: imagePath,
         running_event,
         ticket_name,
         ticket_price,
