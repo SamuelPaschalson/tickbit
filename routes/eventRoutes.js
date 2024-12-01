@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 const auth = require("../middleware/auth");
 
-router.post("/:userId/create-event", auth, create_event);
+router.post("/:userId/create-event", auth, upload.single("image"), create_event);
 router.get("/popular-event", popular_event);
 router.get("/all-popular-event", all_popular_event);
 router.get("/search", search);
