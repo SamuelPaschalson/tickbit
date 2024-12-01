@@ -10,6 +10,7 @@ const {
 } = require("../controllers/eventController");
 const router = express.Router();
 const auth = require("../middleware/auth");
+const upload = require("../upload");
 
 router.post("/:userId/create-event", auth, upload.single("image"), create_event);
 router.get("/popular-event", popular_event);
