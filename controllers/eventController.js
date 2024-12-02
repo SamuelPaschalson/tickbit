@@ -250,7 +250,6 @@ exports.create_ticket = async (req, res) => {
       fullName,
       email,
       quantity,
-      phoneNumber,
       userId,
       paymentStatus,
     } = req.body;
@@ -260,7 +259,6 @@ exports.create_ticket = async (req, res) => {
       !fullName ||
       !email ||
       !quantity ||
-      !phoneNumber ||
       !userId ||
       !paymentStatus
     ) {
