@@ -292,7 +292,6 @@ exports.create_ticket = async (req, res) => {
       price: event.ticket_price,
       fullName,
       email,
-      phoneNumber,
       payment_Status: paymentStatus,
       userId,
     });
