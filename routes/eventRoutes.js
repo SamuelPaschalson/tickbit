@@ -18,6 +18,6 @@ router.get("/all-popular-event", all_popular_event);
 router.get("/search", search);
 router.get("/events", auth, events);
 router.get("/:eventId", eventsById);
-router.get("/:eventId/create-ticket", auth, create_ticket);
+router.post("/:eventId/create-ticket", auth, create_ticket);
 
 module.exports = router;
