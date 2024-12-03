@@ -18,7 +18,7 @@ router.post("/signup", signupValidation, validate, signup);
 router.post("/login", loginValidation, validate, login);
 router.post("/create-account-info", validate, account_info);
 // router.post("/create-account-info", loginValidation, validate, account_info);
-router.post("/change-password", loginValidation, validate, change_password);
+// router.post("/change-password", loginValidation, validate, change_password);
 router.get("/user", auth, userData);
 
 module.exports = router;
